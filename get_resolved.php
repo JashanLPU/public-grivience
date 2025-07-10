@@ -1,11 +1,16 @@
 <?php
 // --- Get Recently Resolved API Endpoint ---
 
+// --- FIXED: Added headers to prevent browser caching ---
+// This ensures that every time we ask for the list, we get the freshest data from the database.
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
 header('Content-Type: application/json');
+
 require 'config.php';
 
-// --- FIXED: This query now sorts by the new 'resolved_at' column ---
-// This guarantees we get the 5 most RECENTLY resolved items.
+// This query sorts by the new 'resolved_at' column to get the 5 most RECENTLY resolved items.
 $sql = "SELECT * FROM grievances WHERE status = 'resolved' ORDER BY resolved_at DESC LIMIT 5";
 
 $result = $conn->query($sql);

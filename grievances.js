@@ -11,22 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Element References ---
     const grievanceForm = document.getElementById('grievance-form');
     const grievanceListDiv = document.getElementById('grievance-list');
-    const resolvedListDiv = document.getElementById('resolved-list'); // We'll add logic for this later if needed
+    const resolvedListDiv = document.getElementById('resolved-list');
 
-    // --- The `renderGrievances()` Function ---
-    // This is the master function that fetches data from the backend and displays it.
-    async function renderGrievances() {
-        console.log("Fetching latest grievances...");
+    // --- The `renderPendingGrievances()` Function ---
+    // Fetches and displays the main list of PENDING grievances.
+    async function renderPendingGrievances() {
         try {
-            // Use the Fetch API to call our PHP script.
             const response = await fetch('get_grievances.php');
             const grievances = await response.json();
 
-            // Clear the current list to prevent duplicates.
-            grievanceListDiv.innerHTML = '';
+            grievanceListDiv.innerHTML = ''; // Clear the list
 
             if (grievances.length === 0) {
-                grievanceListDiv.innerHTML = '<p class="empty-state">No active grievances. Be the first to report one!</p>';
+                grievanceListDiv.innerHTML = '<p class="empty-state">No active grievances. Report one now!</p>';
             } else {
                 grievances.forEach(grievance => {
                     const card = createGrievanceCard(grievance);
@@ -34,12 +31,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         } catch (error) {
-            console.error("Error fetching grievances:", error);
-            grievanceListDiv.innerHTML = '<p class="empty-state">Could not load grievances. Please check the connection.</p>';
+            console.error("Error fetching pending grievances:", error);
+            grievanceListDiv.innerHTML = '<p class="empty-state">Could not load grievances.</p>';
         }
     }
 
-    // --- Helper function to create an HTML element for a grievance card ---
+    // --- NEW: `renderResolvedGrievances()` Function ---
+    // Fetches and displays the list of RECENTLY RESOLVED grievances.
+    async function renderResolvedGrievances() {
+        try {
+            const response = await fetch('get_resolved.php');
+            const grievances = await response.json();
+
+            resolvedListDiv.innerHTML = ''; // Clear the list
+
+            if (grievances.length === 0) {
+                resolvedListDiv.innerHTML = '<p class="empty-state-small">No issues resolved yet.</p>';
+            } else {
+                grievances.forEach(grievance => {
+                    const resolvedItem = document.createElement('div');
+                    resolvedItem.className = 'resolved-item';
+                    resolvedItem.innerHTML = `<p>${escapeHTML(grievance.title)}</p><span>${escapeHTML(grievance.location)}</span>`;
+                    resolvedListDiv.appendChild(resolvedItem);
+                });
+            }
+        } catch (error) {
+            console.error("Error fetching resolved grievances:", error);
+            resolvedListDiv.innerHTML = '<p class="empty-state-small">Could not load resolved items.</p>';
+        }
+    }
+
+    // --- Combined Render Function ---
+    // This function calls both render functions to update the whole page.
+    function renderAll() {
+        console.log("Fetching latest data...");
+        renderPendingGrievances();
+        renderResolvedGrievances();
+    }
+
+    // Helper function to create an HTML element for a grievance card.
     function createGrievanceCard(grievance) {
         const card = document.createElement('div');
         const severityMap = { 4: 'critical', 3: 'high', 2: 'medium', 1: 'low' };
@@ -64,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // --- Security Helper Function ---
-    // This prevents Cross-Site Scripting (XSS) attacks by converting special characters to HTML entities.
     function escapeHTML(str) {
+        // A simple function to prevent basic XSS attacks.
         return str.replace(/[&<>'"]/g, 
           tag => ({
               '&': '&amp;',
@@ -84,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. Form Submission ---
     grievanceForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Prevent the default browser form submission
+        e.preventDefault(); 
 
         const formData = new FormData(grievanceForm);
         const submitButton = grievanceForm.querySelector('button[type="submit"]');
@@ -92,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
         submitButton.textContent = 'Submitting...';
 
         try {
-            // Send the form data to our 'add_grievance.php' script.
             const response = await fetch('add_grievance.php', {
                 method: 'POST',
                 body: formData
@@ -101,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (result.status === 'success') {
                 grievanceForm.reset();
-                renderGrievances(); // Immediately refresh the list to show the new grievance
+                renderAll(); // Immediately refresh both lists
             } else {
                 alert('Error: ' + result.message);
             }
@@ -114,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 2. Click Handler for Upvote/Resolve buttons (using event delegation) ---
+    // --- 2. Click Handler for Upvote/Resolve buttons ---
     grievanceListDiv.addEventListener('click', async (e) => {
         const grievanceCard = e.target.closest('.grievance-card');
         if (!grievanceCard) return;
@@ -134,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('action', action);
 
             try {
-                // Send the action to our 'update_grievance.php' script.
                 const response = await fetch('update_grievance.php', {
                     method: 'POST',
                     body: formData
@@ -142,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
 
                 if (result.status === 'success') {
-                    renderGrievances(); // Refresh the list to show the change
+                    renderAll(); // Refresh both lists to show the change
                 } else {
                     alert('Error: ' + result.message);
                 }
@@ -157,11 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //  LIVE POLLING & INITIAL RENDER
     // =================================
 
-    // Fetch and display the grievances when the page first loads.
-    renderGrievances();
+    // Fetch and display all data when the page first loads.
+    renderAll();
 
     // Set up a polling mechanism to fetch data every 5 seconds.
-    // This makes the page feel "live" as it will update automatically.
-    setInterval(renderGrievances, 5000); // 5000 milliseconds = 5 seconds
+    setInterval(renderAll, 5000); 
 
 });

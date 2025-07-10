@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicPulse - Login & Signup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background Layers -->
+    <div id="login-bg" class="background-layer"></div>
+    <div id="signup-bg" class="background-layer"></div>
+
+    <!-- Main Content Container -->
+    <div id="page-container">
+
+        <!-- Login Page -->
+        <div id="login-page" class="page-wrapper is-active">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1>CivicPulse</h1>
+                    <p>Your Voice, Prioritized.</p>
+                </div>
+                <div class="form-body">
+                    <div class="form-title">
+                        <h2>Welcome Back!</h2>
+                    </div>
+                    <!-- FIXED: Added id="login-form" -->
+                    <form id="login-form" class="form-content" onsubmit="return false;">
+                        <div class="form-input-container">
+                            <input id="login-email" name="email" type="email" required class="form-input" placeholder=" ">
+                            <label for="login-email" class="form-label">Email Address</label>
+                        </div>
+                        <div class="form-input-container">
+                            <input id="login-password" name="password" type="password" required class="form-input" placeholder=" ">
+                            <label for="login-password" class="form-label">Password</label>
+                        </div>
+                        <div class="form-link-container">
+                            <button type="button" id="open-gemini-modal-btn" class="form-link">Forgot Email? ✨</button>
+                        </div>
+                        <button type="submit" class="submit-button">Login</button>
+                        <p class="form-footer-note">
+                            Don't have an account? 
+                            <button type="button" id="goto-signup-btn" class="form-link">Sign up</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signup Page -->
+        <div id="signup-page" class="page-wrapper is-inactive-right">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1>CivicPulse</h1>
+                    <p>Your Voice, Prioritized.</p>
+                </div>
+                <div class="form-body">
+                    <div class="form-title">
+                        <h2>Create an Account</h2>
+                    </div>
+                    <!-- FIXED: Added id="signup-form" -->
+                    <form id="signup-form" class="form-content" onsubmit="return false;">
+                        <div class="form-input-container">
+                            <input id="signup-name" name="name" type="text" required class="form-input" placeholder=" ">
+                            <label for="signup-name" class="form-label">Full Name</label>
+                        </div>
+                        <div class="form-input-container">
+                            <input id="signup-username" name="username" type="text" required class="form-input" placeholder=" ">
+                            <label for="signup-username" class="form-label">Username</label>
+                        </div>
+                        <!-- FIXED: Added the missing "Suggest Usernames" button -->
+                        <div class="suggestion-container">
+                             <button type="button" id="suggest-username-btn" class="suggestion-btn">Suggest Usernames ✨</button>
+                        </div>
+                        <div id="username-suggestions"></div>
+                        <div class="form-input-container">
+                            <input id="signup-email" name="email" type="email" required class="form-input" placeholder=" ">
+                            <label for="signup-email" class="form-label">Email Address</label>
+                        </div>
+                        <div class="form-input-container">
+                            <input id="signup-password" name="password" type="password" required class="form-input" placeholder=" ">
+                            <label for="signup-password" class="form-label">Password</label>
+                        </div>
+                        <button type="submit" class="submit-button">Create Account</button>
+                        <p class="form-footer-note">
+                            Already have an account? 
+                            <button type="button" id="goto-login-btn" class="form-link">Log in</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gemini Help Modal -->
+    <div id="gemini-modal" class="hidden">
+        <div id="gemini-modal-content">
+            <div class="modal-header">
+                <h3>Let's Find Your Email ✨</h3>
+                <button id="close-gemini-modal-btn" class="modal-close-btn">&times;</button>
+            </div>
+            <p class="modal-description">Describe yourself or how you signed up. For example, "I'm John from the parks department."</p>
+            <div>
+                <textarea id="gemini-prompt-input" rows="3" class="modal-textarea" placeholder="Type here..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button id="get-gemini-help-btn" class="modal-submit-btn">
+                    <span id="gemini-btn-text">Get Help</span>
+                    <div id="gemini-spinner" class="spinner hidden"></div>
+                </button>
+            </div>
+            <div id="gemini-result" class="hidden"></div>
+        </div>
+    </div>
+
+    <!-- NEW: Custom Notification Element -->
+    <div id="notification" class="notification"></div>
+
+    <!-- FIXED: All JavaScript is now in this single external file -->
+    <script src="login.js"></script>
+
+</body>
+</html>

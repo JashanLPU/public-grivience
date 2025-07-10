@@ -1,0 +1,330 @@
+/* --- About Page - Complete & Independent Stylesheet --- */
+
+/* --- Base Variables & Body --- */
+:root {
+    --primary-color: #0d9488; /* Teal-600 */
+    --primary-dark: #0f766e; /* Teal-700 */
+    --text-dark: #1e293b; /* Slate 800 */
+    --text-light: #f8fafc; /* Slate 50 */
+    --bg-light: #f1f5f9; /* Slate 100 */
+    --bg-white: #ffffff;
+    --border-color: #e2e8f0; /* Slate 200 */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* FIXED: This is the correct body style for a scrollable page */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-white);
+    margin: 0;
+    color: var(--text-dark);
+}
+
+/* --- Header --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1rem 2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo-link {
+    text-decoration: none;
+}
+
+.logo {
+    font-size: 1.875rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: color 0.2s;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid transparent;
+}
+
+.main-nav a:hover {
+    color: var(--primary-color);
+}
+
+.main-nav a.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.welcome-user {
+    font-weight: 500;
+}
+
+.logout-btn-header, .login-btn {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.logout-btn-header:hover, .login-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+
+/* --- About Page Specific Styles --- */
+
+.about-main {
+    padding-top: 80px; /* Account for fixed header */
+}
+
+/* --- Page Title Section --- */
+.page-title-section {
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+    color: var(--text-light);
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.page-title-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.page-title-section h2 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+}
+
+.page-title-section p {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+/* --- Universal Section Styles --- */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0 auto 4rem auto;
+    max-width: 600px;
+    color: var(--text-dark);
+}
+
+.section-title-alt {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0 0 1.5rem 0;
+    color: var(--text-dark);
+}
+
+
+/* --- Commitment (How It Works) Section --- */
+.commitment-section {
+    padding: 6rem 2rem;
+    background-color: var(--bg-light);
+    perspective: 1000px;
+}
+
+.steps-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.step-card {
+    background: var(--bg-white);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    text-align: center;
+    width: 30%;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s;
+}
+
+.step-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+}
+
+.step-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    line-height: 1;
+}
+
+.step-card h4 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+    color: var(--text-dark);
+}
+
+.step-card p {
+    line-height: 1.6;
+    color: #475569; /* slate-600 */
+}
+
+/* --- Our Story Section --- */
+.story-section {
+    padding: 6rem 2rem;
+    background-color: var(--bg-white);
+}
+
+.story-container {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.story-image {
+    flex-basis: 45%;
+}
+
+.story-image img {
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.story-content {
+    flex-basis: 55%;
+}
+
+.story-content p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #475569;
+    margin-bottom: 1.5rem;
+}
+
+
+/* --- Meet the Team Section --- */
+.team-section {
+    padding: 6rem 2rem;
+    background-color: var(--bg-light);
+}
+
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.team-member-card {
+    text-align: center;
+    width: 250px;
+}
+
+.team-member-card img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 5px solid var(--bg-white);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s;
+}
+
+.team-member-card:hover img {
+    transform: scale(1.05);
+}
+
+.team-member-card h4 {
+    font-size: 1.5rem;
+    margin: 0 0 0.25rem 0;
+}
+
+.team-member-card p {
+    color: var(--primary-color);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* --- Footer --- */
+.main-footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: var(--text-dark);
+    color: #9ca3af; /* slate-400 */
+}
+
+.main-footer p {
+    margin: 0 0 1rem 0;
+}
+
+.footer-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--text-light);
+}
+
+
+/* --- GENSHIN-INSPIRED ANIMATION --- */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(100px) scale(0.9) rotateX(-20deg);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0);
+}
+
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.45s; }
+.delay-4 { transition-delay: 0.6s; }

@@ -1,0 +1,219 @@
+/* --- Archive Page - Complete & Independent Stylesheet --- */
+
+/* --- Base Variables & Body --- */
+:root {
+    --primary-color: #0d9488; /* Teal-600 */
+    --primary-dark: #0f766e; /* Teal-700 */
+    --secondary-color: #166534; /* Green */
+    --text-dark: #1e293b; /* Slate 800 */
+    --text-light: #f8fafc; /* Slate 50 */
+    --bg-light: #f1f5f9; /* Slate 100 */
+    --bg-white: #ffffff;
+    --border-color: #e2e8f0; /* Slate 200 */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    margin: 0;
+    color: var(--text-dark);
+}
+
+/* --- Header --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--bg-white);
+    padding: 1rem 2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo-link {
+    text-decoration: none;
+}
+
+.logo {
+    font-size: 1.875rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: color 0.2s;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid transparent;
+}
+
+.main-nav a:hover {
+    color: var(--primary-color);
+}
+
+.main-nav a.active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.welcome-user {
+    font-weight: 500;
+}
+
+.logout-btn-header {
+    background-color: #e2e8f0;
+    color: var(--text-dark);
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    font-size: 0.875rem;
+}
+
+.logout-btn-header:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.login-btn {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+/* --- Archive Page Specific Styles --- */
+.archive-main {
+    padding: 8rem 2rem 2rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.archive-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.archive-header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.archive-header p {
+    font-size: 1.125rem;
+    color: #475569;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.archive-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.archive-card {
+    background-color: var(--bg-white);
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    padding: 1.5rem;
+    border-left: 5px solid var(--secondary-color); /* Green for resolved */
+    display: flex;
+    flex-direction: column;
+}
+
+.archive-card h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+}
+
+.archive-card .location {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.archive-card .description {
+    color: #475569;
+    line-height: 1.6;
+    flex-grow: 1; /* Makes description take up available space */
+    margin-bottom: 1rem;
+}
+
+.archive-card .meta-info {
+    font-size: 0.875rem;
+    color: #64748b;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- Footer --- */
+.main-footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: var(--text-dark);
+    color: #9ca3af;
+}
+
+.main-footer p {
+    margin: 0 0 1rem 0;
+}
+
+.footer-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--text-light);
+}

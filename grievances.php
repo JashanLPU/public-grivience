@@ -22,9 +22,9 @@ if (!$is_logged_in) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Link to your main CSS file -->
-
-    <!-- Link to a new, specific CSS file for this page -->
+    <!-- Link to the single master stylesheet -->
+    
+    <!-- Link to the specific CSS for this page -->
     <link rel="stylesheet" href="grievances.css">
 </head>
 <body>
@@ -39,7 +39,9 @@ if (!$is_logged_in) {
                 <a href="home.php">Home</a>
                 <a href="about.php">About Us</a>
                 <a href="grievances.php" class="active">Live Grievances</a>
-                <a href="contact.php">Contact Us</a>
+                <a href="archive.php" >Resolved Grievance</a>
+                <a href="contact.php">Contact</a>
+                <span class="nav-indicator"></span>
             </nav>
             <div class="user-actions">
                 <?php if ($is_logged_in): ?>
@@ -88,19 +90,14 @@ if (!$is_logged_in) {
             </section>
 
             <!-- Recently Resolved Panel -->
-            <section class="resolved-container card">
-                 <h3><i class="fa-solid fa-check-double"></i> Recently Resolved</h3>
-                 <div id="resolved-list">
-                    <!-- Items will be added by JavaScript -->
-                 </div>
-            </section>
+           
         </aside>
 
         <!-- Right Column: Live Grievances Board -->
         <section class="grievance-board">
             <h2 class="section-title-alt">Live Grievances (Sorted by Priority)</h2>
             <div id="grievance-list">
-                <!-- Grievance cards will be dynamically inserted here by JavaScript -->
+                <!-- Grievance cards will be dynamically inserted here by grievances.js -->
             </div>
         </section>
     </main>

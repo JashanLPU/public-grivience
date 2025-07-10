@@ -22,6 +22,7 @@ $username = $is_logged_in ? $_SESSION['username'] : '';
                 <a href="home.php" class="active">Home</a>
                 <a href="about.php">About Us</a>
                 <a href="grievances.php">Live Grievances</a>
+                <a href="archive.php" >Resolved Grievance</a>
                 <a href="contact.php">Contact</a>
             </nav>
             <div class="user-actions">

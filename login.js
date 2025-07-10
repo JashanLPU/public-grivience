@@ -18,9 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const notification = document.getElementById('notification');
 
     // --- Image URLs ---
-    const loginImageUrl = 'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?q=80&w=2036&auto=format&fit=crop';
-    const signupImageUrl = 'https://images.unsplash.com/photo-1545224148-527869599f91?q=80&w=1974&auto=format&fit=crop';
-
+    const loginImageUrl = 'login.jpg';
+    const signupImageUrl = 'signup.jpg'
     // --- Set Initial State on Load ---
     if (loginBg && signupBg) {
         loginBg.style.backgroundImage = `url('${loginImageUrl}')`;

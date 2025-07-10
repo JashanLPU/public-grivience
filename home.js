@@ -13,27 +13,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
     scrollElements.forEach(el => { observer.observe(el); });
 
-    // --- AI Chatbot Logic ---
+    // --- FIXED: Restored AI Chatbot Logic ---
     const chatbotContainer = document.getElementById('chatbot-container');
     const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
     const chatbotMessages = document.getElementById('chatbot-messages');
     const chatbotInput = document.getElementById('chatbot-input');
     const chatbotSendBtn = document.getElementById('chatbot-send-btn');
 
-    // Toggle chatbot window visibility
-    chatbotToggleBtn.addEventListener('click', () => {
-        chatbotContainer.classList.toggle('active');
-    });
+    // Check if chatbot elements exist on the page before adding listeners
+    if (chatbotContainer && chatbotToggleBtn && chatbotMessages && chatbotInput && chatbotSendBtn) {
+        // Toggle chatbot window visibility
+        chatbotToggleBtn.addEventListener('click', () => {
+            chatbotContainer.classList.toggle('active');
+        });
 
-    // Send message on button click
-    chatbotSendBtn.addEventListener('click', sendMessage);
+        // Send message on button click
+        chatbotSendBtn.addEventListener('click', sendMessage);
 
-    // Send message on Enter key press
-    chatbotInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
+        // Send message on Enter key press
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    }
 
     async function sendMessage() {
         const userInput = chatbotInput.value.trim();

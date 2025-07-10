@@ -1,9 +1,5 @@
 <?php
-// --- User Login API Endpoint ---
-// This script handles the login process and session management.
 
-// Starting a session is the very first thing we do.
-// This allows us to store information (like user ID and name) across different pages.
 session_start();
 
 header('Content-Type: application/json');
